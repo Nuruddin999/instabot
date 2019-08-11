@@ -1,16 +1,12 @@
 const puppeteer = require("puppeteer");
 const credentials = require("./credentials");
-const alreadysubscribeon = [];
-
-let myarray = [];
+const subs = require("./suvscribers");
 (async () => {
-  const f = fs;
   const browser = await puppeteer.launch({
     headless: false,
     args: ["--window-size=1400,880"],
     ignoreHTTPSErrors: true
   });
-  const fs = require("fs");
   const page = await browser.newPage();
   page.setViewport({ height: 880, width: 1400 });
   await page.goto("https://instagram.com/accounts/login");
@@ -26,38 +22,40 @@ let myarray = [];
       .click();
   });
   await page.waitFor(4000);
-  await page.goto("https://instagram.com/abu_suud");
-  await page.waitFor(4000);
-  await page.evaluate(() => {
-    document.querySelector("div.v1Nh3 a").click();
-  });
-  await page.waitFor(2000);
-
-  await page.evaluate(() => {
-    setInterval(() => {
-      let button = document.querySelectorAll(".FPmhX");
-      arrow = document.querySelector(".coreSpriteRightPaginationArrow");
-      button.forEach(btn => {
-        if (btn.title.includes("suvenir_kavkaza")) {
+  for (let i = 0; i < subs.na_kogo_podpisalsya_nozhi.length; i++) {
+    await page.goto(
+      "https://instagram.com/" + subs.na_kogo_podpisalsya_nozhi[i]
+    );
+    let sbut = await page.$x('//button[contains(text(),"Подписаться")]');
+    await page.waitFor(4000);
+    if ((await page.$("button._5f5mN")) !== null) {
+      let subscrbutton = await page.evaluate(() =>
+        Array.from(document.querySelectorAll("button._5f5mN"), e => e.innerText)
+      );
+      for (let s = 0; s < subscrbutton.length; s++) {
+        let n = subscrbutton[s];
+        if (n == "Подписаться") {
+          //  await page.waitForSelector("button.BY3EC");
+          //  await page.click("button.BY3EC");
+          await sbut[0].click();
         } else {
-          console.log(coms.length);
-          coms.push(btn.title);
-          let unique = [...new Set(coms)];
-          if (unique.length % 100 == 0) {
-            var json = JSON.stringify(unique);
-            f.writeFile("./myjsonfile.json", json, "utf8", function(err) {
-              if (err) {
-                console.log(err);
-              } else {
-                //Everything went OK!
-                console.log(instagram.primarycommentators.length + "   " + k);
-              }
-            });
-          }
+          console.log(n);
         }
-      });
-
-      arrow.click();
-    }, 3000);
-  });
+      }
+    }
+    if ((await page.$("button.BY3EC")) !== null) {
+      console.log("private");
+      let subscrbutton = await page.evaluate(() =>
+        Array.from(document.querySelectorAll("button.BY3EC"), e => e.innerText)
+      );
+      for (let s = 0; s < subscrbutton.length; s++) {
+        let n = subscrbutton[s];
+        if (n == "Подписаться") {
+          await sbut[0].click();
+        } else {
+          console.log(n);
+        }
+      }
+    }
+  }
 })();
