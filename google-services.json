@@ -1,0 +1,114 @@
+{
+  "project_info": {
+    "project_number": "719621574259",
+    "firebase_url": "https://foodapp-27326.firebaseio.com",
+    "project_id": "foodapp-27326",
+    "storage_bucket": "foodapp-27326.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:719621574259:android:1a7b025a156901be6d2406",
+        "android_client_info": {
+          "package_name": "com.example.flutterapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "719621574259-94fj8tptdvh3rstk6t42v3gtmq0mdglc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTpdrUpTfbc7ZOzpQvfznGIE58W9KLy2o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "719621574259-94fj8tptdvh3rstk6t42v3gtmq0mdglc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:719621574259:android:f461c4042e207eea",
+        "android_client_info": {
+          "package_name": "com.example.sg772.foodapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "719621574259-e29vdp61hn9l4agui2m5d4dsn16n1jke.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sg772.foodapp",
+            "certificate_hash": "4d101e60ddcfb51db2b3cce84e74520830ac3d0d"
+          }
+        },
+        {
+          "client_id": "719621574259-94fj8tptdvh3rstk6t42v3gtmq0mdglc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTpdrUpTfbc7ZOzpQvfznGIE58W9KLy2o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "719621574259-94fj8tptdvh3rstk6t42v3gtmq0mdglc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:719621574259:android:1781f0217f79d7b9",
+        "android_client_info": {
+          "package_name": "com.example.soccer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "719621574259-jn2jiedvpebu6l4aqhf1ti4ohd06f9ds.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.soccer",
+            "certificate_hash": "40662ee44b90da330fb0a3287789927690551683"
+          }
+        },
+        {
+          "client_id": "719621574259-94fj8tptdvh3rstk6t42v3gtmq0mdglc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTpdrUpTfbc7ZOzpQvfznGIE58W9KLy2o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "719621574259-94fj8tptdvh3rstk6t42v3gtmq0mdglc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

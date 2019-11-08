@@ -1,9 +1,9 @@
 const puppeteer = require("puppeteer");
 const credentials = require("./credentials");
-const subs = require("./suvscribers");
-const sc = require("./sc");
-let sessioncookies;
+const subs = require("./serebrosubscribers.js");
+const current = require("./currentser.js");
 (async () => {
+  let sessioncookies;
   const browser = await puppeteer.launch({
     headless: false,
     args: ["--window-size=1400,880"],
@@ -11,42 +11,31 @@ let sessioncookies;
   });
   const page = await browser.newPage();
   page.setViewport({ height: 880, width: 1400 });
+  const context = browser.defaultBrowserContext();
+  await context.overridePermissions("https://instagram.com/accounts/login", [
+    "geolocation"
+  ]);
 
-  if (sc.sc) {
-    await page.setCookie(...sc.sc);
-    await page.goto("https://instagram.com/");
-  } else {
-    const context = browser.defaultBrowserContext();
-    await context.overridePermissions("https://instagram.com/accounts/login", [
-      "geolocation"
-    ]);
-    try {
-      await page.goto("https://instagram.com/accounts/login");
-    } catch {
-      await page.waitFor(4000);
-    }
+  await page.goto("https://instagram.com/accounts/login");
+  await page.waitFor(() => document.querySelectorAll("input").length);
+  await page.setGeolocation({ latitude: 47.504682, longitude: 42.980854 });
+  await page.type("[name=username]", credentials.username);
+  await page.type("[name=password]", credentials.password);
+  // debugger;
+  await page.evaluate(() => {
+    document
+      .querySelector(
+        "div.Igw0E.IwRSH.eGOV_._4EzTm.bkEs3.CovQj.jKUp7.DhRcB button"
+      )
+      .click();
+  });
 
-    await page.waitFor(() => document.querySelectorAll("input").length);
-    await page.setGeolocation({ latitude: 47.504682, longitude: 42.980854 });
-    await page.type("[name=username]", credentials.usernamenozhi);
-    await page.type("[name=password]", credentials.passwordnozhi);
-    // debugger;
-    await page.evaluate(() => {
-      document
-        .querySelector(
-          "div.Igw0E.IwRSH.eGOV_._4EzTm.bkEs3.CovQj.jKUp7.DhRcB button"
-        )
-        .click();
-    });
-  }
   await page.waitFor(4000);
   debugger;
-  sessioncookies = await page.cookies();
-  console.log(JSON.stringify(sessioncookies));
-  for (let i = 1532; i < subs.current.length; i++) {
-    if (subs.na_kogo_podpisalsya_nozhi.indexOf(subs.current[i]) < 0) {
+  for (let z = 485; z < current.current.length; z++) {
+    if (subs.serebrocommnets.indexOf(current.current[z]) < 0) {
       try {
-        await page.goto("https://instagram.com/" + subs.current[i]);
+        await page.goto("https://instagram.com/" + current.current[z]);
       } catch (error) {
         await page.waitFor(4000);
       }
@@ -68,8 +57,8 @@ let sessioncookies;
             //  await page.click("button.BY3EC");
             await sbut[0].click();
             await page.waitFor(2000);
-
-            console.log("Подписан" + "  " + subs.current[i] + "  " + i);
+            console.clear();
+            console.log("Подписан" + "  " + current.current[z] + "  " + z);
             // let currentstatus = await page.$x(
             //   '//button[contains(text(),"Подписаться")]'
             // );
@@ -83,7 +72,7 @@ let sessioncookies;
             //   );
             // }
           } else {
-            console.log(n + " " + i);
+            console.log(n + " " + z);
           }
         }
       }
@@ -99,10 +88,10 @@ let sessioncookies;
           let n = subscrbutton[s];
           if (n == "Подписаться") {
             await sbut[0].click();
-
-            console.log("Подписан" + "  " + subs.current[i] + "  " + i);
+            console.clear();
+            console.log("Подписан" + "  " + current.current[z] + "  " + z);
           } else {
-            console.log(n + "  " + i);
+            console.log(n + " " + z);
           }
         }
       }
@@ -124,7 +113,7 @@ let sessioncookies;
           console.log("Надо сделать паузу");
         }
       }
-      await page.waitFor(60000);
+      await page.waitFor(6000);
     }
   }
 })();
