@@ -2,6 +2,7 @@ const puppeteer = require('puppeteer');
 const { env } = require('./env');
 const fs = require('fs').promises;
 const sc = require("./cookies");
+const auth=require("./auth")
 const getName = async (page, c) => {
   let value = await page.evaluate(el => el.textContent, c)
   return value
@@ -21,7 +22,8 @@ const getCommnetators = async (page, list) => {
 (async () => {
   const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
-  await page.setCookie(...sc.cks);
+  if(sc.cks){
+      await page.setCookie(...sc.cks);
   await page.setViewport({
     width: 1280,
     height: 768,
@@ -34,6 +36,16 @@ const getCommnetators = async (page, list) => {
   await page.waitFor(2000)
   let commnetators = await page.$$("a.sqdOP.yWX7d._8A5w5.ZIAjV")
   setInterval(() => getCommnetators(page), 10000)
+  }
+  else 
+  {
+    auth.auth.login(page)
+    // await page.goto('https://instagram.com/', { waitUntil: 'networkidle2' });
+    // await page.type("#loginForm > div > div:nth-child(1) > div > label > input",env.login,{delay:200})
+    // await page.type("#loginForm > div > div:nth-child(2) > div > label > input", env.password, { delay: 200 })
+
+  }
+
 
 
 
