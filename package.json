@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "puppeteer": "^5.5.0"
+    "mysql2": "^2.2.5",
+    "puppeteer": "^5.5.0",
+    "sequelize": "^6.3.5"
   }
 }

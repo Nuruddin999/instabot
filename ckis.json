@@ -1,0 +1,90 @@
+[
+  {
+    "name": "urlgen",
+    "value": "\"{\\\"195.58.59.145\\\": 44391}:1kpdbk:o5cQrbu9nHfmJvPwh5e_N8TrpRM\"",
+    "domain": ".instagram.com",
+    "path": "/",
+    "expires": -1,
+    "size": 69,
+    "httpOnly": true,
+    "secure": true,
+    "session": true
+  },
+  {
+    "name": "rur",
+    "value": "FTW",
+    "domain": ".instagram.com",
+    "path": "/",
+    "expires": -1,
+    "size": 6,
+    "httpOnly": true,
+    "secure": true,
+    "session": true
+  },
+  {
+    "name": "sessionid",
+    "value": "1189968801%3APQjkzt7QqcYYFf%3A19",
+    "domain": ".instagram.com",
+    "path": "/",
+    "expires": 1639687273.522638,
+    "size": 41,
+    "httpOnly": true,
+    "secure": true,
+    "session": false
+  },
+  {
+    "name": "mid",
+    "value": "X9pwvQALAAHRQDv2kgTR0yRxFeim",
+    "domain": ".instagram.com",
+    "path": "/",
+    "expires": 1671223231.026531,
+    "size": 31,
+    "httpOnly": false,
+    "secure": true,
+    "session": false
+  },
+  {
+    "name": "csrftoken",
+    "value": "Nbtp4ZneUz0bcYqlN6uZ4lD7AJGXxows",
+    "domain": ".instagram.com",
+    "path": "/",
+    "expires": 1639600874.117641,
+    "size": 41,
+    "httpOnly": false,
+    "secure": true,
+    "session": false
+  },
+  {
+    "name": "ig_nrcb",
+    "value": "1",
+    "domain": ".instagram.com",
+    "path": "/",
+    "expires": 1639687230.529586,
+    "size": 8,
+    "httpOnly": false,
+    "secure": true,
+    "session": false
+  },
+  {
+    "name": "ds_user_id",
+    "value": "1189968801",
+    "domain": ".instagram.com",
+    "path": "/",
+    "expires": 1615927274.117921,
+    "size": 20,
+    "httpOnly": false,
+    "secure": true,
+    "session": false
+  },
+  {
+    "name": "ig_did",
+    "value": "194C5B80-AF28-43B6-9A86-4851DF21DCD1",
+    "domain": ".instagram.com",
+    "path": "/",
+    "expires": 1671223230.529193,
+    "size": 42,
+    "httpOnly": true,
+    "secure": true,
+    "session": false
+  }
+]
