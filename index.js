@@ -2,11 +2,12 @@ const puppeteer = require('puppeteer');
 const { env } = require('./env');
 const fs = require('fs').promises;
 const activeTalker=require("./Models/AllKnife")
-const allknives=require("./Models/AllNozhi")
+const subscribe=require("./subscribe")
 const auth=require("./auth")
 const getCommentators=require("./getCommentators")
 const unsubscribe=require("./unSubscribe")
 const goToUser=require("./goToUser")
+const pageComponents=require("./pageComponents")
 const getName = async (page, c) => {
   let value = await page.evaluate(el => el.textContent, c)
   return value
@@ -39,13 +40,11 @@ const cookies = JSON.parse(cookiesString);
     deviceScaleFactor: 1,
   });
   await page.goto('https://instagram.com', { waitUntil: 'networkidle2' });
-  await page.click("body > div.RnEpo.Yx5HN > div > div > div > div.mt3GC > button.aOOlW.HoLwm")
-  let allknifeusers=await allknives.allnozhi.findAll()
-  for (let index = 0; index < allknifeusers.length; index++) {
-    await goToUser.goToUser(page,allknifeusers[index].name)
-  await unsubscribe.unsubscribe(page)
-    break
-   }
+  await page.waitForSelector(pageComponents.page.turnOnNotifs)
+  await page.click(pageComponents.page.turnOnNotifs).catch(e=>console.log("not found"))
+await subscribe.subscribe(page)
+//await unsubscribe.unsubscribe(page)
+//await getCommentators.pickTalkers(page,"nozhi_shop__")
   
 }
   else 

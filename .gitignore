@@ -3,3 +3,5 @@ cookies.js
 cookies.json
 phoneCode.json
 node_modules/
+lastUnsubscribedIndex.txt
+lastsubscribedIndex.txt
