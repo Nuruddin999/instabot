@@ -47,7 +47,7 @@ const lastIndex=async(list)=>{
      }
      return currentindex
 }
-module.exports.subscribe=async(page)=>{
+module.exports.getTalkers=async()=>{
     let activeTalkers=await  activetalker.activetalker.findAll().catch(e=>console.log("error on server"))
     let uniqueList=[]
     for (let index =0; index < activeTalkers.length; index++) {
@@ -56,12 +56,16 @@ module.exports.subscribe=async(page)=>{
         }
        }
        let currentIndex=await lastIndex(uniqueList)
-    for (let index =currentIndex; index < uniqueList.length; index++) {
-        console.log(index+"/"+uniqueList.length)
+       return {currentIndex,uniqueList}
+}
+module.exports.subscribe=async(page)=>{
+ let listTalkers=await this.getTalkers()
+    for (let index =listTalkers.currentIndex; index < listTalkers.uniqueList.length; index++) {
+        console.log(index+"/"+listTalkers.uniqueList.length)
        if(200-index===0){await page.waitForTimeout(40000)}
-        await goToUser.goToUser(page,uniqueList[index])
-        await subscr(page,uniqueList[index])
-        if(index===uniqueList.length-1){
+        await goToUser.goToUser(page,listTalkers.uniqueList[index])
+        await subscr(page,listTalkers.uniqueList[index])
+        if(index===listTalkers.uniqueList.length-1){
             console.log("all")
         }
        }
