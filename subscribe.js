@@ -10,8 +10,6 @@ const isForSubs=(followed,following)=>{
     return !(more1kFollowers || more500Followers) && !(more1kFol || more500Fol)
  }
  const pressFollow=async(page,followersCount,followingCount,user)=>{
-     let followBtn= await page.$(followCount.page.followButton)
-     // let followBtnPrivate=await page.$(followCount.followBtnPrivate)
      const [button] = await page.$x("//button[contains(., 'Подписаться')]");
   if(isForSubs(followersCount,followingCount) && button){ 
             await button.click();
@@ -34,9 +32,7 @@ await pressFollow(page,followersCount,followingCount,user)
     }
     else if(followingPrivate) {
          let followingCount=await page.evaluate(el=>el.innerText,followingPrivate)
-         console.log("following"+followingCount)
          let followersCount=await page.evaluate(el=>el.innerText,followersPrivate ? followersPrivate:followers)
-         console.log("followers"+followersCount)
          await pressFollow(page,followersCount,followingCount,user)     
     }
 }
@@ -61,9 +57,12 @@ module.exports.subscribe=async(page)=>{
        }
        let currentIndex=await lastIndex(uniqueList)
     for (let index =currentIndex; index < uniqueList.length; index++) {
-        console.log(uniqueList[index])
-       if(200-index===0){break}
+        console.log(index+"/"+uniqueList.length)
+       if(200-index===0){await page.waitForTimeout(40000)}
         await goToUser.goToUser(page,uniqueList[index])
         await subscr(page,uniqueList[index])
+        if(index===uniqueList.length-1){
+            console.log("all")
+        }
        }
 }

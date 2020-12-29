@@ -4,14 +4,22 @@ module.exports = {
   async addTalker(page,c,sourceAccaunt){
     let result= await this.getName(page,c)
     if(result===sourceAccaunt){ return }
-    console.log("getname: " + result)
-    let talker=await  activeTalker.activetalker.findOne({ where: { name: result } })
-    if (!talker){
- await activeTalker.activetalker.create({
-        name: result,
-      })
-    }
-    console.log("added: " + result)
+    await activeTalker.activetalker.sync()
+    let findOrCreateResult=await activeTalker.activetalker.findOrCreate({  where: {
+      name: result
+    },
+    defaults: { // set the default properties if it doesn't exist
+      name: ""
+    }})
+    let user= findOrCreateResult[0], // the instance of the author
+ created = findOrCreateResult[1]; // boolean stating if it was created or not
+  if (!created) { // false if author already exists and was not created.
+    console.log('User already exists');
+  }
+  else {
+     console.log("added: " + user.name)
+  }
+   
   },
   async getName(page, c) {
     let value = await page.evaluate(el => el.textContent, c)
