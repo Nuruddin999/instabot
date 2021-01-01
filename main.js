@@ -8,6 +8,7 @@ const getCommentators=require("./getCommentators")
 const unsubscribe=require("./unSubscribe")
 const goToUser=require("./goToUser")
 const pageComponents=require("./pageComponents")
+const axios=require("axios")
 const getName = async (page, c) => {
   let value = await page.evaluate(el => el.textContent, c)
   return value
@@ -27,7 +28,7 @@ const subscribeTalkerWrapper=async()=>{
   }
 }
 }
-module.exports.startWork=async () => {
+module.exports.startWork=async (io) => {
   const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
   const cookiesString = await fs.readFile('./ckis.json');
@@ -42,7 +43,7 @@ const cookies = JSON.parse(cookiesString);
   await page.goto('https://instagram.com', { waitUntil: 'networkidle2' });
   await page.waitForSelector(pageComponents.page.turnOnNotifs)
   await page.click(pageComponents.page.turnOnNotifs).catch(e=>console.log("not found"))
-await subscribe.subscribe(page)
+//await subscribe.subscribe(page)
 //await unsubscribe.unsubscribe(page)
 //await getCommentators.pickTalkers(page,"nozhi_shop__")
   
@@ -53,4 +54,9 @@ await subscribe.subscribe(page)
     const cookies = await page.cookies();
     await fs.writeFile('./ckis.json', JSON.stringify(cookies, null, 2));
   }
+  return page
 };
+module.exports.pickCommentators=async(io)=>{
+let page=await this.startWork()
+await getCommentators.pickTalkers(page,"nozhi_shop__",io)
+}
