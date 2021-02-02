@@ -10,3 +10,4 @@ module.exports.allnozhi = sequelize.sequelize.define("allnozhi", {
         allowNull: false
     }
 });
+sequelize.sequelize.sync().then(result=>console.log("all nozhis synchronized"))

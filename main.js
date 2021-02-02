@@ -28,8 +28,8 @@ const subscribeTalkerWrapper=async()=>{
   }
 }
 }
-module.exports.startWork=async (io) => {
-  const browser = await puppeteer.launch({ headless: false });
+module.exports.startWork=async (browser) => {
+  //const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
   const cookiesString = await fs.readFile('./ckis.json');
 const cookies = JSON.parse(cookiesString);
@@ -56,7 +56,8 @@ const cookies = JSON.parse(cookiesString);
   }
   return page
 };
-module.exports.pickCommentators=async(io)=>{
-let page=await this.startWork()
-await getCommentators.pickTalkers(page,"nozhi_shop__",io)
+module.exports.pickCommentators=async(io,targetAccaunt,browser)=>{
+let page=await this.startWork(browser)
+await getCommentators.pickTalkers(page,targetAccaunt,io)
 }
+

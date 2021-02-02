@@ -7,3 +7,4 @@ module.exports.activetalker = sequelize.sequelize.define("activetalker", {
         primaryKey: true,
     }
 });
+sequelize.sequelize.sync().then(result=>console.log("all knife synchronized"))
